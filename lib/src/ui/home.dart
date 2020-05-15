@@ -52,34 +52,35 @@ class _HomeState extends State<Home> {
                   alignment: AlignmentDirectional.topCenter,
                   overflow: Overflow.visible,
                   children: <Widget>[
-                    _buildBackgroundCover(),
+                    _buildBackgroundFirst(),
                     _buildAppBar(),
                     _buildGreeting(),
-                    _buildFeatured(),
+                    _buildBackgroundSecond(),
                   ],
                 ),
+                _buildFeatured(),
               ]),
         ),
       ),
     );
   }
 
-  _buildBackgroundCover() {
+  _buildBackgroundFirst() {
     return Container(
-      height: 320.0,
+      height: 300.0,
       decoration: BoxDecoration(
           gradient: LinearGradient(
-        colors: <Color>[Colors.blue, Color(0xFF0D47A1)],
+        colors: <Color>[Color(0xFF009FB1), Color(0xFF026A98)],
         stops: [0.0, 1.0],
-        begin: Alignment.centerLeft,
-        end: Alignment.centerRight,
+        begin: Alignment.topLeft,
+        end: Alignment.bottomRight,
       )),
     );
   }
 
   _buildAppBar() {
     return Positioned(
-        bottom: 230.0,
+        top: 20.0,
         child: Container(
           width: MediaQuery.of(context).size.width,
           child: Column(children: <Widget>[
@@ -112,7 +113,7 @@ class _HomeState extends State<Home> {
 
   _buildGreeting() {
     return Positioned(
-      bottom: 75,
+      top: 100,
       child: Container(
         padding: EdgeInsets.all(30.0),
         width: MediaQuery.of(context).size.width,
@@ -124,6 +125,7 @@ class _HomeState extends State<Home> {
                   "Hi Rizqy,",
                   style: TextStyle(color: Colors.white, fontSize: 30.0),
                 )),
+            SizedBox(height: 10.0),
             Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
@@ -136,12 +138,11 @@ class _HomeState extends State<Home> {
     );
   }
 
-  _buildFeatured() {
+  _buildBackgroundSecond() {
     return Positioned(
-      bottom: -670,
+      top: 270,
       child: Container(
         height: MediaQuery.of(context).size.height,
-        padding: EdgeInsets.fromLTRB(30.0, 30.0, 0.0, 20.0),
         width: MediaQuery.of(context).size.width,
         decoration: BoxDecoration(
             color: Colors.white,
@@ -154,53 +155,6 @@ class _HomeState extends State<Home> {
                 blurRadius: 5.5,
               )
             ]),
-        child: Container(
-          child: Column(children: <Widget>[
-            new SizedBox(
-              height: 200.0,
-              child: new ListView.builder(
-                itemCount: _menuList.length,
-                padding: EdgeInsets.only(top: 12.0),
-                physics: new ClampingScrollPhysics(),
-                scrollDirection: Axis.horizontal,
-                itemBuilder: (context, index) {
-                  return _menuFeatured(_menuList[index]);
-                },
-              ),
-            ),
-            SizedBox(height: 20.0),
-            Align(
-              alignment: Alignment.centerLeft,
-              child: Text(
-                "Recent",
-                style: new TextStyle(
-                    fontSize: 14.0,
-                    color: Colors.blue,
-                    fontWeight: FontWeight.w500),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(0.0, 10.0, 20.0, 20.0),
-              child: Container(
-                height: 2.0,
-                width: MediaQuery.of(context).size.width,
-                color: Colors.grey[300],
-              ),
-            ),
-            new SizedBox(
-              height: 100.0,
-              child: new ListView.builder(
-                itemCount: _recentList.length,
-                padding: EdgeInsets.only(top: 12.0),
-                physics: new ClampingScrollPhysics(),
-                scrollDirection: Axis.horizontal,
-                itemBuilder: (context, index) {
-                  return _recentFeautured(_recentList[index]);
-                },
-              ),
-            ),
-          ]),
-        ),
       ),
     );
   }
@@ -282,5 +236,56 @@ class _HomeState extends State<Home> {
             )
           ],
         ));
+  }
+
+  _buildFeatured() {
+    return Container(
+      padding: EdgeInsets.fromLTRB(30.0, 0.0, 0.0, 20.0),
+      child: Column(children: <Widget>[
+        new SizedBox(
+          height: 200.0,
+          child: new ListView.builder(
+            itemCount: _menuList.length,
+            padding: EdgeInsets.only(top: 12.0),
+            physics: new ClampingScrollPhysics(),
+            scrollDirection: Axis.horizontal,
+            itemBuilder: (context, index) {
+              return _menuFeatured(_menuList[index]);
+            },
+          ),
+        ),
+        Container(
+          width: MediaQuery.of(context).size.width,
+          padding: EdgeInsets.only(top: 30.0, bottom: 10.0),
+          child: Text(
+            "Recent",
+            style: new TextStyle(
+                fontSize: 14.0,
+                color: Colors.blue,
+                fontWeight: FontWeight.w500),
+          ),
+        ),
+        Container(
+          margin: EdgeInsets.only(
+            right: 20.0,
+          ),
+          height: 2.0,
+          width: MediaQuery.of(context).size.width - 20,
+          color: Colors.grey[300],
+        ),
+        new SizedBox(
+          height: 100.0,
+          child: new ListView.builder(
+            itemCount: _recentList.length,
+            padding: EdgeInsets.only(top: 12.0),
+            physics: new ClampingScrollPhysics(),
+            scrollDirection: Axis.horizontal,
+            itemBuilder: (context, index) {
+              return _recentFeautured(_recentList[index]);
+            },
+          ),
+        ),
+      ]),
+    );
   }
 }
