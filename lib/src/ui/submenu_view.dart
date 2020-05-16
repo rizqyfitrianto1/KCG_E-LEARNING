@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:kcg_elearning/src/model/submenu_model.dart';
+import 'package:kcg_elearning/src/ui/md_view.dart';
 
 class MenuDetail extends StatefulWidget {
-  @override
+  final String title;
+  MenuDetail(this.title);
   _MenuDetailState createState() => _MenuDetailState();
 }
 
@@ -13,7 +15,7 @@ class _MenuDetailState extends State<MenuDetail> {
   void initState() {
     super.initState();
     _submenuList.add(new Submenu(
-        title: "Fundational Knowledge",
+        title: "Foundational Knowledge",
         color1: Color(0xFFeaafc8),
         color2: Color(0xFF654ea3)));
     _submenuList.add(new Submenu(
@@ -87,7 +89,7 @@ class _MenuDetailState extends State<MenuDetail> {
                             width: MediaQuery.of(context).size.width / 2,
                             margin: EdgeInsets.only(left: 30.0),
                             child: Text(
-                              "NEOP PROGRAM",
+                              widget.title,
                               style: TextStyle(
                                   color: Colors.white, fontSize: 32.0,),
                             )))
@@ -119,66 +121,71 @@ class _MenuDetailState extends State<MenuDetail> {
   }
 
   _submenuFeautured(Submenu submenuList) {
-    return Container(
-      margin: EdgeInsets.all(10.0),
-      width: MediaQuery.of(context).size.width,
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(10.0)),
-          color: Colors.white,
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black12,
-              spreadRadius: 5.5,
-              blurRadius: 5.5,
-            )
-          ]),
-      child: Row(
-        mainAxisSize: MainAxisSize.max,
-        children: <Widget>[
-          Stack(children: <Widget>[
-            Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(10.0),
-                    bottomLeft: Radius.circular(10.0)),
-                color: Colors.transparent,
-                image: DecorationImage(
-                  fit: BoxFit.fill,
-                  image: AssetImage(
-                    'assets/image2.png',
-                  ),
-                ),
-              ),
-              height: 80.0,
-              width: 80.0,
-            ),
-            Container(
-              height: 80.0,
-              width: 80.0,
-              decoration: BoxDecoration(
+    return InkWell(
+      onTap: (){
+        Navigator.push(context, MaterialPageRoute(builder: (context) => Md(submenuList.title)));
+      },
+          child: Container(
+        margin: EdgeInsets.all(10.0),
+        width: MediaQuery.of(context).size.width,
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.all(Radius.circular(10.0)),
+            color: Colors.white,
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black12,
+                spreadRadius: 5.5,
+                blurRadius: 5.5,
+              )
+            ]),
+        child: Row(
+          mainAxisSize: MainAxisSize.max,
+          children: <Widget>[
+            Stack(children: <Widget>[
+              Container(
+                decoration: BoxDecoration(
                   borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(10.0),
                       bottomLeft: Radius.circular(10.0)),
-                  gradient: LinearGradient(
-                      begin: FractionalOffset.topLeft,
-                      end: FractionalOffset.bottomRight,
-                      colors: [
-                        submenuList.color1.withOpacity(0.5),
-                        submenuList.color2
-                      ],
-                      stops: [
-                        0.0,
-                        1.0
-                      ])),
-            )
-          ]),
-          SizedBox(width: 20.0),
-          Flexible(
-              child: Text(
-            submenuList.title,
-            style: TextStyle(fontSize: 20.0, color: Colors.blue),
-          )),
-        ],
+                  color: Colors.transparent,
+                  image: DecorationImage(
+                    fit: BoxFit.fill,
+                    image: AssetImage(
+                      'assets/image2.png',
+                    ),
+                  ),
+                ),
+                height: 80.0,
+                width: 80.0,
+              ),
+              Container(
+                height: 80.0,
+                width: 80.0,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(10.0),
+                        bottomLeft: Radius.circular(10.0)),
+                    gradient: LinearGradient(
+                        begin: FractionalOffset.topLeft,
+                        end: FractionalOffset.bottomRight,
+                        colors: [
+                          submenuList.color1.withOpacity(0.5),
+                          submenuList.color2
+                        ],
+                        stops: [
+                          0.0,
+                          1.0
+                        ])),
+              )
+            ]),
+            SizedBox(width: 20.0),
+            Flexible(
+                child: Text(
+              submenuList.title,
+              style: TextStyle(fontSize: 20.0, color: Colors.blue),
+            )),
+          ],
+        ),
       ),
     );
   }

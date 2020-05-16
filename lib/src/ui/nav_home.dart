@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kcg_elearning/src/model/menu.dart';
 import 'package:kcg_elearning/src/model/recent.dart';
+import 'package:kcg_elearning/src/ui/submenu_view.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -159,10 +160,61 @@ class _HomeState extends State<Home> {
     );
   }
 
-  _menuFeatured(Menu menuList) {
+  _buildFeatured() {
+    return Container(
+      padding: EdgeInsets.fromLTRB(30.0, 0.0, 0.0, 20.0),
+      child: Column(children: <Widget>[
+        new SizedBox(
+          height: 200.0,
+          child: new ListView.builder(
+            itemCount: _menuList.length,
+            padding: EdgeInsets.only(top: 12.0),
+            physics: new ClampingScrollPhysics(),
+            scrollDirection: Axis.horizontal,
+            itemBuilder: (context, index) {
+              return _menuFeatured(_menuList[index]);
+            },
+          ),
+        ),
+        Container(
+          width: MediaQuery.of(context).size.width,
+          padding: EdgeInsets.only(top: 30.0, bottom: 10.0),
+          child: Text(
+            "Recent",
+            style: new TextStyle(
+                fontSize: 14.0,
+                color: Colors.blue,
+                fontWeight: FontWeight.w500),
+          ),
+        ),
+        Container(
+          margin: EdgeInsets.only(
+            right: 20.0,
+          ),
+          height: 2.0,
+          width: MediaQuery.of(context).size.width - 20,
+          color: Colors.grey[300],
+        ),
+        new SizedBox(
+          height: 100.0,
+          child: new ListView.builder(
+            itemCount: _recentList.length,
+            padding: EdgeInsets.only(top: 12.0),
+            physics: new ClampingScrollPhysics(),
+            scrollDirection: Axis.horizontal,
+            itemBuilder: (context, index) {
+              return _recentFeautured(_recentList[index]);
+            },
+          ),
+        ),
+      ]),
+    );
+  }
+
+   _menuFeatured(Menu menuList) {
     return InkWell(
       onTap: () {
-        print("ini tap");
+        Navigator.push(context, MaterialPageRoute(builder: (context) => MenuDetail(menuList.title)));
       },
       child: new Container(
           width: 150,
@@ -236,56 +288,5 @@ class _HomeState extends State<Home> {
             )
           ],
         ));
-  }
-
-  _buildFeatured() {
-    return Container(
-      padding: EdgeInsets.fromLTRB(30.0, 0.0, 0.0, 20.0),
-      child: Column(children: <Widget>[
-        new SizedBox(
-          height: 200.0,
-          child: new ListView.builder(
-            itemCount: _menuList.length,
-            padding: EdgeInsets.only(top: 12.0),
-            physics: new ClampingScrollPhysics(),
-            scrollDirection: Axis.horizontal,
-            itemBuilder: (context, index) {
-              return _menuFeatured(_menuList[index]);
-            },
-          ),
-        ),
-        Container(
-          width: MediaQuery.of(context).size.width,
-          padding: EdgeInsets.only(top: 30.0, bottom: 10.0),
-          child: Text(
-            "Recent",
-            style: new TextStyle(
-                fontSize: 14.0,
-                color: Colors.blue,
-                fontWeight: FontWeight.w500),
-          ),
-        ),
-        Container(
-          margin: EdgeInsets.only(
-            right: 20.0,
-          ),
-          height: 2.0,
-          width: MediaQuery.of(context).size.width - 20,
-          color: Colors.grey[300],
-        ),
-        new SizedBox(
-          height: 100.0,
-          child: new ListView.builder(
-            itemCount: _recentList.length,
-            padding: EdgeInsets.only(top: 12.0),
-            physics: new ClampingScrollPhysics(),
-            scrollDirection: Axis.horizontal,
-            itemBuilder: (context, index) {
-              return _recentFeautured(_recentList[index]);
-            },
-          ),
-        ),
-      ]),
-    );
   }
 }

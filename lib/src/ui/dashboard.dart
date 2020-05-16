@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:kcg_elearning/src/ui/account.dart';
-import 'package:kcg_elearning/src/ui/home.dart';
-import 'package:kcg_elearning/src/ui/something.dart';
+import 'package:kcg_elearning/src/ui/nav_account.dart';
+import 'package:kcg_elearning/src/ui/nav_home.dart';
+import 'package:kcg_elearning/src/ui/nav_something.dart';
 
 class Dashboard extends StatefulWidget {
   @override

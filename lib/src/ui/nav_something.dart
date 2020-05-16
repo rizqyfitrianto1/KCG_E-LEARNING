@@ -19,28 +19,25 @@ class _SomethingState extends State<Something> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               RaisedButton(
-                onPressed: (){
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => Quiz()));
+                onPressed: () {
+                  Navigator.push(
+                      context, MaterialPageRoute(builder: (context) => Quiz()));
                 },
                 child: Text("QUIZ"),
-                ),
-                RaisedButton(
-              onPressed: (){
-                Navigator.push(context, MaterialPageRoute(builder: (context) => MenuDetail()));
-              },
-              child: Text("Menu Detail"),
               ),
               RaisedButton(
-              onPressed: (){
-                Navigator.push(context, MaterialPageRoute(builder: (context) => SuccessPage()));
-              },
-              child: Text("Submit Answer"),
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => SuccessPage()));
+                },
+                child: Text("Submit Answer"),
               ),
               RaisedButton(
-              onPressed: (){
-                Navigator.push(context, MaterialPageRoute(builder: (context) => AccountPage()));
-              },
-              child: Text("Account"),
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => AccountPage()));
+                },
+                child: Text("Account"),
               ),
             ],
           ),
