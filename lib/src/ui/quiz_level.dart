@@ -41,16 +41,19 @@ class _QuizLevelState extends State<QuizLevel> {
               ),
               Container(
                 width: MediaQuery.of(context).size.width,
-                padding: EdgeInsets.symmetric(horizontal: 30.0, vertical: 20.0),
+                padding: EdgeInsets.symmetric( vertical: 20.0),
                 child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      Text(
-                        "Materi",
-                        style: TextStyle(
-                            fontSize: 20.0,
-                            color: Color(0xFF026A98),
-                            fontWeight: FontWeight.w700),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal : 15.0),
+                        child: Text(
+                          "Quiz",
+                          style: TextStyle(
+                              fontSize: 20.0,
+                              color: Color(0xFF026A98),
+                              fontWeight: FontWeight.w700),
+                        ),
                       ),
                       _buildListMateri(),
                     ]),
@@ -77,15 +80,14 @@ class _QuizLevelState extends State<QuizLevel> {
   _listMateri(Video videoList) {
     return Container(
       width: MediaQuery.of(context).size.height,
-      child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Text(
+      child: ExpansionTile(
+            title : Text(
               videoList.title,
               style: TextStyle(
                   color: Color(0xFF026A98), fontWeight: FontWeight.w700),
             ),
-            new SizedBox(
+            children : <Widget>[
+              SizedBox(
               height: 145.0,
               child: new ListView.builder(
                 itemCount: _videoLevelList.length,
@@ -95,8 +97,8 @@ class _QuizLevelState extends State<QuizLevel> {
                   return _videoFeatured(_videoLevelList[index]);
                 },
               ),
-            ),
-          ]),
+            ),],
+          ),
     );
   }
 
@@ -125,7 +127,7 @@ class _QuizLevelState extends State<QuizLevel> {
                   ),
                 ]),
                 Padding(
-                  padding: const EdgeInsets.only(right: 8.0),
+                  padding: const EdgeInsets.only(right: 30.0),
                   child: Icon(
                     Icons.arrow_forward_ios,
                     size: 10.0,
@@ -135,7 +137,7 @@ class _QuizLevelState extends State<QuizLevel> {
               ],
             ),
             Container(
-              margin: EdgeInsets.only(top: 3.0),
+              margin: EdgeInsets.only(top: 3.0, right: 25.0),
               height: 1.0,
               color: Colors.grey[300],
             ),
