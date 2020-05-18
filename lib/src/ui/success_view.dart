@@ -40,6 +40,16 @@ class _SuccessPageState extends State<SuccessPage> {
                         fontWeight: FontWeight.w700),
                   ),
                 ),
+                // Padding(
+                //   padding: const EdgeInsets.only(bottom: 10.0),
+                //   child: Text(
+                //     "Quiz completed successfully.",
+                //     style: TextStyle(
+                //         fontSize: 22.0,
+                //         color: Colors.black,
+                //         fontWeight: FontWeight.w700),
+                //   ),
+                // ),
                 Padding(
                   padding: const EdgeInsets.only(
                       left: 30.0, right: 30.0, bottom: 20.0),
@@ -50,34 +60,30 @@ class _SuccessPageState extends State<SuccessPage> {
                   ),
                 ),
                 Container(
-                  height: 50.0,
-                  margin: EdgeInsets.fromLTRB(30.0, 30.0, 30.0, 20.0),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20.0),
-                    gradient: LinearGradient(
-                      colors: <Color>[
-                        Color(0xFF009FB1),
-                        Color(0xFF026A98).withOpacity(0.8)
-                      ],
-                      stops: [0.0, 1.0],
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                    ),
-                  ),
-                  child: InkWell(
-                    onTap: () {},
-                    child: Center(
-                      child: Text(
-                        'VIEW RESULT',
-                        style: TextStyle(
-                          fontSize: 18.0,
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
+              height: 50.0,
+              margin: EdgeInsets.fromLTRB(30.0, 30.0, 30.0,20.0),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(30.0),
+                gradient: LinearGradient(
+                  colors: <Color>[Color(0xFF4C00BF), Color(0xFF009FB1)],
+                  stops: [0.0, 1.0],
+                  begin: Alignment.centerLeft,
+                  end: Alignment.centerRight,
+                ),
+              ),
+              child: InkWell(
+                onTap: () {},
+                child: Center(
+                  child: Text(
+                    "View Result",
+                    style: TextStyle(
+                        fontSize: 18.0,
+                        color: Colors.white,
+                        fontWeight: FontWeight.w700),
                   ),
                 ),
+              ),
+            ),
               ]),
         ),
       ),

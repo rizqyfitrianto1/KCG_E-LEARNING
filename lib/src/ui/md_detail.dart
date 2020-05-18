@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kcg_elearning/src/model/menu.dart';
 import 'package:kcg_elearning/src/model/video.dart';
+import 'package:kcg_elearning/src/ui/materi_pdf.dart';
 import 'package:kcg_elearning/src/ui/quiz_level.dart';
 
 class DetailMD extends StatefulWidget {
@@ -204,7 +205,7 @@ class _DetailMDState extends State<DetailMD> {
   _menuFeatured(Menu menuList) {
     return InkWell(
       onTap: () {
-        print("TAP");
+        Navigator.push(context, MaterialPageRoute(builder: (context) => MateriPDF(menuList.title)));
         },
       child: Stack(
         children: <Widget>[

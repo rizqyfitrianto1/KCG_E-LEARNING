@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kcg_elearning/src/model/video.dart';
 import 'package:kcg_elearning/src/model/video_level.dart';
+import 'package:kcg_elearning/src/ui/quiz.dart';
 
 class QuizLevel extends StatefulWidget {
   @override
@@ -115,7 +116,7 @@ class _QuizLevelState extends State<QuizLevel> {
   Widget _videoFeatured(VideoLevel videoLevelList) {
     return InkWell(
       onTap: () {
-        print(videoLevelList.title);
+        Navigator.push(context, MaterialPageRoute(builder: (context) => Quiz()));
       },
       child: Container(
         margin: EdgeInsets.only(top: 10.0, left: 20.0),
