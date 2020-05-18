@@ -11,6 +11,8 @@ class _QuizLevelState extends State<QuizLevel> {
   List<Video> _videoList = [];
   List<VideoLevel> _videoLevelList = [];
 
+  int selected = 0;
+
   @override
   void initState() {
     super.initState();
@@ -41,12 +43,12 @@ class _QuizLevelState extends State<QuizLevel> {
               ),
               Container(
                 width: MediaQuery.of(context).size.width,
-                padding: EdgeInsets.symmetric( vertical: 20.0),
+                padding: EdgeInsets.symmetric(vertical: 20.0),
                 child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Padding(
-                        padding: const EdgeInsets.symmetric(horizontal : 15.0),
+                        padding: const EdgeInsets.symmetric(horizontal: 15.0),
                         child: Text(
                           "Quiz",
                           style: TextStyle(
@@ -71,36 +73,70 @@ class _QuizLevelState extends State<QuizLevel> {
         physics: new ClampingScrollPhysics(),
         scrollDirection: Axis.vertical,
         itemBuilder: (context, index) {
-          return _listMateri(_videoList[index]);
+          return Container(
+            width: MediaQuery.of(context).size.height,
+            child: ExpansionTile(
+              key: GlobalKey(),
+                initiallyExpanded: index == selected,
+                title: Text(
+                  _videoList[index].title,
+                  style: TextStyle(
+                      color: Color(0xFF026A98), fontWeight: FontWeight.w700),
+                ),
+                children: <Widget>[
+                  SizedBox(
+                    height: 145.0,
+                    child: new ListView.builder(
+                      itemCount: _videoLevelList.length,
+                      physics: new ClampingScrollPhysics(),
+                      scrollDirection: Axis.vertical,
+                      itemBuilder: (context, index) {
+                        return _videoFeatured(_videoLevelList[index]);
+                      },
+                    ),
+                  ),
+                ],
+                onExpansionChanged: ((newState) {
+                  if (newState)
+                    setState(() {
+                      selected = index;
+                    });
+                  else
+                    setState(() {
+                      selected = -1;
+                    });
+                })),
+          );
         },
       ),
     );
   }
 
-  _listMateri(Video videoList) {
-    return Container(
-      width: MediaQuery.of(context).size.height,
-      child: ExpansionTile(
-            title : Text(
-              videoList.title,
-              style: TextStyle(
-                  color: Color(0xFF026A98), fontWeight: FontWeight.w700),
-            ),
-            children : <Widget>[
-              SizedBox(
-              height: 145.0,
-              child: new ListView.builder(
-                itemCount: _videoLevelList.length,
-                physics: new ClampingScrollPhysics(),
-                scrollDirection: Axis.vertical,
-                itemBuilder: (context, index) {
-                  return _videoFeatured(_videoLevelList[index]);
-                },
-              ),
-            ),],
-          ),
-    );
-  }
+  // _listMateri(Video videoList) {
+  //   return Container(
+  //     width: MediaQuery.of(context).size.height,
+  //     child: ExpansionTile(
+  //       title: Text(
+  //         videoList.title,
+  //         style:
+  //             TextStyle(color: Color(0xFF026A98), fontWeight: FontWeight.w700),
+  //       ),
+  //       children: <Widget>[
+  //         SizedBox(
+  //           height: 145.0,
+  //           child: new ListView.builder(
+  //             itemCount: _videoLevelList.length,
+  //             physics: new ClampingScrollPhysics(),
+  //             scrollDirection: Axis.vertical,
+  //             itemBuilder: (context, index) {
+  //               return _videoFeatured(_videoLevelList[index]);
+  //             },
+  //           ),
+  //         ),
+  //       ],
+  //     ),
+  //   );
+  // }
 
   Widget _videoFeatured(VideoLevel videoLevelList) {
     return InkWell(
