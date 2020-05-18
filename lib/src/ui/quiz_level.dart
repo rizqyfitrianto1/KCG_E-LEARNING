@@ -112,32 +112,6 @@ class _QuizLevelState extends State<QuizLevel> {
     );
   }
 
-  // _listMateri(Video videoList) {
-  //   return Container(
-  //     width: MediaQuery.of(context).size.height,
-  //     child: ExpansionTile(
-  //       title: Text(
-  //         videoList.title,
-  //         style:
-  //             TextStyle(color: Color(0xFF026A98), fontWeight: FontWeight.w700),
-  //       ),
-  //       children: <Widget>[
-  //         SizedBox(
-  //           height: 145.0,
-  //           child: new ListView.builder(
-  //             itemCount: _videoLevelList.length,
-  //             physics: new ClampingScrollPhysics(),
-  //             scrollDirection: Axis.vertical,
-  //             itemBuilder: (context, index) {
-  //               return _videoFeatured(_videoLevelList[index]);
-  //             },
-  //           ),
-  //         ),
-  //       ],
-  //     ),
-  //   );
-  // }
-
   Widget _videoFeatured(VideoLevel videoLevelList) {
     return InkWell(
       onTap: () {
