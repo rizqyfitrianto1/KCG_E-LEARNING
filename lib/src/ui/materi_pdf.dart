@@ -1,5 +1,9 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
-import 'package:flutter_plugin_pdf_viewer/flutter_plugin_pdf_viewer.dart';
+import 'package:flutter_pdfview/flutter_pdfview.dart';
+import 'package:http/http.dart' as http;
+import 'package:path_provider/path_provider.dart';
 
 class MateriPDF extends StatefulWidget {
   final String title;
@@ -8,19 +12,22 @@ class MateriPDF extends StatefulWidget {
 }
 
 class _MateriPDFState extends State<MateriPDF> {
-  String pdfasset = "assets/documentTest.pdf";
-  PDFDocument _doc;
+  final String pdfUrl = "https://gahp.net/wp-content/uploads/2017/09/sample.pdf";
+  String _localFile;
 
   @override
   void initState() {
     super.initState();
-    _initPDF();
+    loadPDF();
   }
 
-  _initPDF() async {
-    final doc = await PDFDocument.fromAsset(pdfasset);
+  Future<String> loadPDF() async{
+    var response = await http.get(pdfUrl);
+    var dir = await getTemporaryDirectory();
+    File file = new File(dir.path+"/data.pdf");
+    await file.writeAsBytes(response.bodyBytes, flush: true);
     setState(() {
-      _doc = doc;
+      _localFile = file.path;
     });
   }
 
@@ -30,10 +37,10 @@ class _MateriPDFState extends State<MateriPDF> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: PDFViewer(document: _doc,
-      indicatorBackground: Color(0xFF026A98),
-      showPicker: false,
-      ),
+      body: _localFile !=null ? Container(
+        child: PDFView(filePath: _localFile)
+      )
+      : Center(child: CircularProgressIndicator()),
     );
   }
 }
