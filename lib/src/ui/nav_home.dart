@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kcg_elearning/src/model/menu.dart';
 import 'package:kcg_elearning/src/model/recent.dart';
+import 'package:kcg_elearning/src/ui/notification_view.dart';
 import 'package:kcg_elearning/src/ui/submenu_view.dart';
 
 class Home extends StatefulWidget {
@@ -11,6 +12,8 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   List<Menu> _menuList = [];
   List<Recent> _recentList = [];
+
+  int notifCount = 15;
 
   @override
   void initState() {
@@ -94,12 +97,40 @@ class _HomeState extends State<Home> {
                     "KCG E-LEARNING",
                     style: TextStyle(color: Colors.white),
                   ),
-                  IconButton(
-                      icon: Icon(
-                        Icons.notifications,
-                        color: Colors.white,
+                  Stack(children: <Widget>[
+                    IconButton(
+                        icon: Icon(
+                          Icons.notifications,
+                          color: Colors.white,
+                        ),
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (contex) => NotificationPage()));
+                        }),
+                        notifCount != 0
+                ? new Positioned(
+                    left: 24,
+                    top: 5,
+                    child: new Container(
+                      padding: EdgeInsets.all(2.5),
+                      decoration: new BoxDecoration(
+                        color: Colors.red,
+                        borderRadius: BorderRadius.circular(8),
                       ),
-                      onPressed: () {})
+                      constraints: BoxConstraints(
+                        minWidth: 18,
+                        minHeight: 18,
+                      ),
+                      child: Text(
+                        notifCount > 99 ? '99+' : '$notifCount',
+                        style: TextStyle(color: Colors.white, fontSize: 14),
+                        textAlign: TextAlign.center,
+                      ),
+                    ))
+                : Container()
+                  ])
                 ],
               ),
             ),
@@ -211,10 +242,13 @@ class _HomeState extends State<Home> {
     );
   }
 
-   _menuFeatured(Menu menuList) {
+  _menuFeatured(Menu menuList) {
     return InkWell(
       onTap: () {
-        Navigator.push(context, MaterialPageRoute(builder: (context) => MenuDetail(menuList.title)));
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => MenuDetail(menuList.title)));
       },
       child: new Container(
           width: 150,

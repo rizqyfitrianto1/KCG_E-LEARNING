@@ -13,18 +13,7 @@ class _SomethingState extends State<Something> {
     return Scaffold(
       body: Container(
         child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              RaisedButton(
-                onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => AccountPage()));
-                },
-                child: Text("Account"),
-              ),
-            ],
-          ),
+          child: Text("Something")
         ),
       ),
     );

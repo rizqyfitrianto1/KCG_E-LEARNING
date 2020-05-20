@@ -10,6 +10,8 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: new ThemeData(
         fontFamily: 'Neutra',
+        primaryColor: Color(0xFF026A98),
+        accentColor: Color(0xFF009FB1)
       ),
       home: WalktroughPage(),
     );
