@@ -250,34 +250,43 @@ class _HomeState extends State<Home> {
             MaterialPageRoute(
                 builder: (context) => MenuDetail(menuList.title)));
       },
-      child: new Container(
-          width: 150,
-          height: 200,
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              colors: <Color>[menuList.color1, menuList.color2],
-              stops: [0.0, 1.0],
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
+      child: Stack(
+        children: <Widget>[
+          Container(
+            height: 200,
+            width: 140,
+            child: Align(
+              alignment: Alignment.bottomRight,
+                          child: Image.asset(
+                    "assets/image2.png",
+                    height: 120.0,
+                    width: 200.0,
+                  ),
             ),
-            borderRadius: BorderRadius.all(Radius.circular(15)),
           ),
-          margin: EdgeInsets.only(right: 20.0),
-          child: Column(
-            children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.all(15.0),
+          Container(
+            height: 200,
+             margin: EdgeInsets.only(right: 15.0),
+             decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  colors: <Color>[menuList.color1.withOpacity(0.5), menuList.color2],
+                  stops: [0.0, 1.0],
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                ),
+                borderRadius: BorderRadius.all(Radius.circular(15)),
+              ),
+            width: 140,
+            child: Padding(
+                padding: const EdgeInsets.fromLTRB(15.0, 20.0, 15.0, 15.0),
                 child: Text(
                   menuList.title,
                   style: TextStyle(color: Colors.white, fontSize: 22.0),
                 ),
               ),
-              Image.asset(
-                "assets/image2.png",
-                height: 100.0,
-              ),
-            ],
-          )),
+          ),
+        ],
+      ),
     );
   }
 
