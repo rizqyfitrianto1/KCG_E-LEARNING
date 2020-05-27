@@ -16,6 +16,7 @@ class _NotificationPageState extends State<NotificationPage> {
   String token = "c7nGIZVu3E4:APA91bEfCf9hMoe4acP7KM9AZC8KKWX09LDrhYrgi_dK9rKwl9FSszGA7ucJ0cmIM40_uInXGt1RKkVX5F4iSpvezxd6oC87biUshCWftUdVNs5-1wPEmQW-HVQLoDo1xNsaB5IT89VQ";
 
   List<Message> _messages;
+  static int i = 0;
 
   _getToken(){
     _firebaseMessaging.getToken().then((deviceToken){
@@ -26,16 +27,25 @@ class _NotificationPageState extends State<NotificationPage> {
   _configureFirebaseListeners(){
     _firebaseMessaging.configure(
       onMessage: (Map<String, dynamic> message) async{
+        if(i%2==0){
         print("onMessage : $message");
         _setMessage(message);
+        }
+        i++;
       },
       onLaunch: (Map<String, dynamic> message) async{
+        if(i%2==0){
         print("onLaunch : $message");
         _setMessage(message);
+        }
+        i++;
       },
       onResume: (Map<String, dynamic> message) async{
+        if(i%2==0){
         print("onResume : $message");
         _setMessage(message);
+        }
+        i++;
       },
     );
   }
@@ -59,9 +69,7 @@ class _NotificationPageState extends State<NotificationPage> {
     _getToken();
     _configureFirebaseListeners();
 
-    _notificationList.add(new NotificationModel(date: "20 MAY 2020"));
-    _notificationList.add(new NotificationModel(date: "19 MAY 2020"));
-    _notificationList.add(new NotificationModel(date: "18 MAY 2020"));
+    _notificationList.add(new NotificationModel(date: "27 MAY 2020"));
   }
 
   @override
