@@ -49,8 +49,10 @@ class _NotificationDetailState extends State<NotificationDetail> {
                   color: Colors.white,
                   padding: EdgeInsets.fromLTRB(20.0, 110.0, 20.0, 25.0),
                   child: Text(
-                    "Situasi saat ini mempersulit para pekerja harian untuk mencari uang dan menghidupi keluarganya. Bekerjasama den",
+                    "Situasi saat ini mempersulit para pekerja harian untuk mencari uang dan menghidupi keluarganya. Bekerjasama dengan ovo dan grab sekarang kita dapat membantu sesama",
                     style: TextStyle(color: Colors.black, fontSize: 17.0),
+                    maxLines: 3,
+                    overflow: TextOverflow.ellipsis,
                   ),
                 ),
                 _buildLokasiPromo(),

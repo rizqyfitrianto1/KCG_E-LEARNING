@@ -1,5 +1,5 @@
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
-import 'package:kcg_elearning/src/model/video_level.dart';
 import 'package:kcg_elearning/src/model/notification.dart';
 import 'package:kcg_elearning/src/ui/notification_detail.dart';
 
@@ -9,23 +9,59 @@ class NotificationPage extends StatefulWidget {
 }
 
 class _NotificationPageState extends State<NotificationPage> {
+  final FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
   List<NotificationModel> _notificationList = [];
-  List<VideoLevel> _videoLevelList = [];
   String lorem =
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.";
+  String token = "c7nGIZVu3E4:APA91bEfCf9hMoe4acP7KM9AZC8KKWX09LDrhYrgi_dK9rKwl9FSszGA7ucJ0cmIM40_uInXGt1RKkVX5F4iSpvezxd6oC87biUshCWftUdVNs5-1wPEmQW-HVQLoDo1xNsaB5IT89VQ";
+
+  List<Message> _messages;
+
+  _getToken(){
+    _firebaseMessaging.getToken().then((deviceToken){
+      print("Device Token : $deviceToken");
+    });
+  }
+
+  _configureFirebaseListeners(){
+    _firebaseMessaging.configure(
+      onMessage: (Map<String, dynamic> message) async{
+        print("onMessage : $message");
+        _setMessage(message);
+      },
+      onLaunch: (Map<String, dynamic> message) async{
+        print("onLaunch : $message");
+        _setMessage(message);
+      },
+      onResume: (Map<String, dynamic> message) async{
+        print("onResume : $message");
+        _setMessage(message);
+      },
+    );
+  }
+
+  _setMessage(Map<String, dynamic> message){
+    final notification = message['notification'];
+    final data = message['data'];
+    final String title = notification['title'];
+    final String body = notification['body'];
+    final String mMessage = data['message'];
+    setState(() {
+      Message m = Message(title, body, mMessage);
+      _messages.add(m);
+    });
+  }
 
   @override
   void initState() {
     super.initState();
+    _messages = List<Message>();
+    _getToken();
+    _configureFirebaseListeners();
+
     _notificationList.add(new NotificationModel(date: "20 MAY 2020"));
     _notificationList.add(new NotificationModel(date: "19 MAY 2020"));
     _notificationList.add(new NotificationModel(date: "18 MAY 2020"));
-
-    _videoLevelList.add(new VideoLevel(
-        title: "You got 500 OVO Points from BCA VA Top Up Cashback!"));
-    _videoLevelList.add(new VideoLevel(
-        title: "You got 500 OVO Points from BCA VA Top Up Cashback!"));
-    _videoLevelList.add(new VideoLevel(title: lorem));
   }
 
   @override
@@ -59,11 +95,11 @@ class _NotificationPageState extends State<NotificationPage> {
         SizedBox(
           height: 195.0,
           child: ListView.builder(
-            itemCount: _videoLevelList.length,
+            itemCount: _messages == null ? 0 : _messages.length,
             physics: new NeverScrollableScrollPhysics(),
             scrollDirection: Axis.vertical,
             itemBuilder: (context, index) {
-              return _titleNotification(_videoLevelList[index]);
+              return _titleNotification(_messages[index]);
             },
           ),
         ),
@@ -71,7 +107,7 @@ class _NotificationPageState extends State<NotificationPage> {
     );
   }
 
-  Widget _titleNotification(VideoLevel videoLevelList) {
+  Widget _titleNotification(Message _messages) {
     return InkWell(
           onTap: (){
             Navigator.push(context, MaterialPageRoute(builder: (context) => NotificationDetail()));
@@ -81,7 +117,7 @@ class _NotificationPageState extends State<NotificationPage> {
           Container(
               width: MediaQuery.of(context).size.width,
               padding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 15.0),
-              child: Text(videoLevelList.title,
+              child: Text(_messages.message,
                   style: TextStyle(
                       color: Colors.black,
                       fontWeight: FontWeight.w700,
@@ -94,5 +130,16 @@ class _NotificationPageState extends State<NotificationPage> {
         ],
       ),
     );
+  }
+}
+
+class Message{
+  String title;
+  String body;
+  String message;
+  Message(title, body, message){
+    this.title = title;
+    this.body = body;
+    this.message = message;
   }
 }

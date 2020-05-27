@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "409283158584",
+    "firebase_url": "https://kcg-e-learning.firebaseio.com",
+    "project_id": "kcg-e-learning",
+    "storage_bucket": "kcg-e-learning.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:409283158584:android:0e6c972a252870f29f3ccd",
+        "android_client_info": {
+          "package_name": "com.example.kcg_elearning"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "409283158584-h1ul4pj8v9q1u6jetch029b9oe0pa6aq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAyYMRwp6Qu6-GnVZzEFdH1eZ5yGmWhZwI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "409283158584-h1ul4pj8v9q1u6jetch029b9oe0pa6aq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
