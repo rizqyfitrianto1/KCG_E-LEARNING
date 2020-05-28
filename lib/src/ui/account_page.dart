@@ -21,8 +21,8 @@ class _AccountPageState extends State<AccountPage> {
                   left: 120,
                   top: -290,
                   child: RotationTransition(
-                    turns: AlwaysStoppedAnimation(15/360),
-                                      child: Container(
+                    turns: AlwaysStoppedAnimation(15 / 360),
+                    child: Container(
                       height: 350,
                       width: 400,
                       decoration: BoxDecoration(
@@ -88,7 +88,7 @@ class _AccountPageState extends State<AccountPage> {
             ),
             Container(
               margin: EdgeInsets.only(top: 10.0),
-              padding: EdgeInsets.symmetric(vertical : 20.0, horizontal: 30.0),
+              padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 30.0),
               height: MediaQuery.of(context).size.height / 4,
               width: MediaQuery.of(context).size.width,
               color: Colors.white,
@@ -167,7 +167,7 @@ class _AccountPageState extends State<AccountPage> {
             ),
             Container(
               margin: EdgeInsets.only(top: 10.0),
-              padding: EdgeInsets.symmetric(vertical : 20.0, horizontal: 30.0),
+              padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 30.0),
               height: MediaQuery.of(context).size.height / 4,
               width: MediaQuery.of(context).size.width,
               color: Colors.white,
@@ -287,15 +287,18 @@ class _AccountPageState extends State<AccountPage> {
                 children: <Widget>[
                   Text("Version 0.0.1 (270)"),
                   Row(children: <Widget>[
-                    Text("Release ",style: TextStyle(fontWeight: FontWeight.w700),),
-                                        Text("21-01-2020"),
-                    ])
+                    Text(
+                      "Release ",
+                      style: TextStyle(fontWeight: FontWeight.w700),
+                    ),
+                    Text("21-01-2020"),
+                  ])
                 ],
               ),
             ),
             Container(
               height: 50.0,
-              margin: EdgeInsets.symmetric(vertical : 20.0, horizontal: 30.0),
+              margin: EdgeInsets.symmetric(vertical: 20.0, horizontal: 30.0),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(30.0),
                 color: Color(0xFF026A98),

@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:kcg_elearning/src/model/walktrough_model.dart';
 import 'package:kcg_elearning/src/ui/dashboard.dart';
+import 'package:kcg_elearning/src/ui/login.dart';
 
 class WalktroughPage extends StatefulWidget {
   @override
@@ -66,7 +67,7 @@ class _WalktroughPageState extends State<WalktroughPage> {
                             context,
                             MaterialPageRoute(
                                 builder: (BuildContext context) =>
-                                    Dashboard()));
+                                    LoginPage()));
                       },
                       child: Text("SKIP", style: TextStyle(color: Color(0xFF009FB1)),)),
                   Row(children: <Widget>[
@@ -90,7 +91,7 @@ class _WalktroughPageState extends State<WalktroughPage> {
                 Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
-                        builder: (BuildContext context) => Dashboard()));
+                        builder: (BuildContext context) => LoginPage()));
               },
               child: Container(
                 alignment: Alignment.center,
