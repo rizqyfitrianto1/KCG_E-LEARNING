@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kcg_elearning/src/ui/nav_account.dart';
 import 'package:kcg_elearning/src/ui/nav_home.dart';
-import 'package:kcg_elearning/src/ui/nav_something.dart';
+import 'package:kcg_elearning/src/ui/nav_result.dart';
 
 class Dashboard extends StatefulWidget {
   @override
@@ -12,7 +12,7 @@ class _DashboardState extends State<Dashboard> {
   int selectedIndex = 0;
   List<Widget> _container = [
     new Home(),
-    new Something(),
+    new ResultPage(),
     new Account(),
   ];
 

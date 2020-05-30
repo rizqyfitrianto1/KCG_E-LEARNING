@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kcg_elearning/src/ui/dashboard.dart';
 
 class SuccessPage extends StatefulWidget {
   @override
@@ -25,7 +26,7 @@ class _SuccessPageState extends State<SuccessPage> {
                     image: DecorationImage(
                       fit: BoxFit.fill,
                       image: AssetImage(
-                        'assets/image2.png',
+                        'assets/images.png',
                       ),
                     ),
                   ),
@@ -72,7 +73,9 @@ class _SuccessPageState extends State<SuccessPage> {
                 ),
               ),
               child: InkWell(
-                onTap: () {},
+                onTap: () {
+                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> Dashboard()));
+                },
                 child: Center(
                   child: Text(
                     "View Result",
